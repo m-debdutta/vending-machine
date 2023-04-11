@@ -1,19 +1,16 @@
 // MAIN PROGRAM
 
 
+
 const dispenseOptimumCoins = function(amount) {
+  const denomination = [10, 5, 2, 1];
   let newAmount = amount;
   let coins = 0;
-  if ((newAmount / 5) >= 1) {
-    coins += Math.trunc(newAmount / 5);
-    newAmount = newAmount % 5;
-  }
-  if (amount / 2 >= 1) {
-    coins += Math.trunc(newAmount / 2);
-    newAmount = newAmount % 2;
-  }
-  if (newAmount === 1) {
-    coins += 1;
+  for (let index = 0; index < denomination.length; index++) {
+    if ((newAmount / denomination[index]) >= 1) {
+      coins += Math.trunc(newAmount / denomination[index]);
+      newAmount = newAmount % denomination[index];
+    }
   }
   return coins
 }
