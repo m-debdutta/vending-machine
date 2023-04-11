@@ -1,5 +1,8 @@
-const giveNumber = function() {
-  return 5;
+// MAIN PROGRAM
+
+
+const getNumberOfCoins = function(amount) {
+  return amount;
 }
 
-exports.giveNumber = giveNumber;
+exports.getNumberOfCoins = getNumberOfCoins;
