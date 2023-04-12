@@ -1,3 +1,3 @@
 #! /bin/bash
 
-node test/test-vending-machine.js
+autorun node vending-machine/test/test-vending-machine.js
