@@ -39,8 +39,10 @@ test.assertEqual(4, vend.dispenseOptimumCoins(13,[1, 4, 7]),
 test.assertEqual(4, vend.dispenseOptimumCoins(13,[7, 4, 1]), 
 "Thirteen rupees should give four coins");
 
-test.assertArrayEqual([ 7, 5, 3, 1 ],vend.sortList([5, 3, 7, 1]),
+test.assertArrayEqual([ 7, 5, 3, 1 ],vend.bubbleSort([5, 3, 7, 1]),
 "5, 3, 7, 1 should give 1, 3, 5, 7");
 test.assertEqual(2, vend.dispenseOptimumCoins(19,[2, 13, 18, 1]), 
 "Nineteen rupees should give two coins");
 
+test.assertArrayEqual([1, 2, 4, 3, 5], vend.swap([1, 2, 3, 4, 5], 2, 3),
+  "Given 1,2,3,4,5 as list and 2,3 as swaping index output should be 1,2,4,3,5");
