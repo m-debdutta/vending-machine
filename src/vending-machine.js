@@ -1,20 +1,14 @@
 // MAIN PROGRAM
 
-const swap = function(list, index1, index2) {
-  const swapHand = list[index1];
-  list[index1] = list[index2];
-  list[index2] = swapHand;
-  return list;
-}
-
-exports.swap = swap;
-
 const bubbleSort = function(list) {
   const sortedList = list;
   for (let index = 1; index < sortedList.length; index++) {
     for (let position = 0; position < sortedList.length - 1; position++) {
-      if (sortedList[position] < sortedList[position + 1])
-        swap(sortedList, position, position + 1);
+      if (sortedList[position] < sortedList[position + 1]) {
+        const swapHand = list[position];
+        list[position] = list[position + 1];
+        list[position + 1] = swapHand;
+      }
     }
   }
   return sortedList;
