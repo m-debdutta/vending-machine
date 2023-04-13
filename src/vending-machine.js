@@ -16,29 +16,31 @@ const bubbleSort = function(list) {
 
 exports.bubbleSort = bubbleSort;
 
-
-
-const dispenseOptimumCoins = function(amount, denominations, noOfCoins) {
-  const orderedDenominations = bubbleSort(denominations);
+const provideCoinCount = function(amount, denominationList) {
+  const coinCountData = {};
+  const orderedDenominations = bubbleSort(denominationList);
   let newAmount = amount;
-  let coins = 0;
-  for (const element of orderedDenominations) {
-    const coinsOfCurrentDenomination = Math.trunc(newAmount / element);
-    newAmount = newAmount % element;
-    coins += coinsOfCurrentDenomination;
-    if (noOfCoins !== undefined) {
-      noOfCoins[element] = (coinsOfCurrentDenomination);
-    }
+  for (const denomination of orderedDenominations) {
+    const coinsOfCurrentDenomination = Math.trunc(newAmount / denomination);
+    newAmount = newAmount % denomination;
+    coinCountData[denomination] = coinsOfCurrentDenomination;
   }
-  return (noOfCoins === undefined) ? coins : noOfCoins;
+  return coinCountData;
+}
+
+const dispenseOptimumCoins = function(amount, denominationList) {
+  let coins = 0;
+  const coinCountList = provideCoinCount(amount, denominationList);
+  for (const values of denominationList) {
+    coins += coinCountList[values];
+  }
+  return coins;
 }
 
 exports.dispenseOptimumCoins = dispenseOptimumCoins;
 
-const giveCoinsOfDenomination = function(amount, denominations) {
-  const noOfCoins = {};
-  return dispenseOptimumCoins(amount, denominations, noOfCoins);
-
+const giveCoinsOfDenomination = function(amount, denominationList) {
+  return provideCoinCount(amount, denominationList);
 }
 
 exports.giveCoinsOfDenomination = giveCoinsOfDenomination;
