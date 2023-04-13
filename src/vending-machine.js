@@ -17,15 +17,28 @@ const bubbleSort = function(list) {
 exports.bubbleSort = bubbleSort;
 
 
-const dispenseOptimumCoins = function(amount, denominations) {
+
+const dispenseOptimumCoins = function(amount, denominations, noOfCoins) {
   const orderedDenominations = bubbleSort(denominations);
   let newAmount = amount;
   let coins = 0;
   for (const element of orderedDenominations) {
-    coins += Math.trunc(newAmount / element);
+    const coinsOfCurrentDenomination = Math.trunc(newAmount / element);
     newAmount = newAmount % element;
+    coins += coinsOfCurrentDenomination;
+    if (noOfCoins !== undefined) {
+      noOfCoins[element] = (coinsOfCurrentDenomination);
+    }
   }
-  return coins;
+  return (noOfCoins === undefined) ? coins : noOfCoins;
 }
 
 exports.dispenseOptimumCoins = dispenseOptimumCoins;
+
+const giveCoinsOfDenomination = function(amount, denominations) {
+  const noOfCoins = {};
+  return dispenseOptimumCoins(amount, denominations, noOfCoins);
+
+}
+
+exports.giveCoinsOfDenomination = giveCoinsOfDenomination;
